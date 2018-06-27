@@ -1,0 +1,22 @@
+{
+  "name": "crud",
+  "version": "1.0.0",
+  "description": "Sistema de gastos diarios",
+  "main": "app.js",
+  "scripts": {
+    "dev": "set NODE_ENV=desarrollo && nodemon app.js",
+    "prod": "set NODE_ENV=produccion && nodemon app.js",
+  },
+  "keywords": [
+    "Sistemas",
+    "Gastos",
+    "Diarios",
+    "Test"
+  ],
+  "author": "Luis Torres",
+  "license": "MIT",
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "express": "^4.16.3"
+  }
+}
