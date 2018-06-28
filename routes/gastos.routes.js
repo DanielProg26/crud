@@ -13,6 +13,6 @@ router.post('/gasto', controllers.gastos.nuevoGasto);
 
 router.put('/gasto', controllers.gastos.modificarGasto);
 
-router.delete('/gasto/:id', fcontrollers.gastos.eliminarGasto);
+router.delete('/gasto/:id', controllers.gastos.eliminarGasto);
 
 module.exports = router;
