@@ -5,3 +5,29 @@
 .no-padding{
   padding: 0 !important;
 }
+
+[ui-view] {
+  height: 100%;
+  position: relative;
+}
+
+.contenedor-mensajes {
+  position: absolute;
+  bottom: 1%;
+  left: 3%;
+  width: 97%;
+  display: flex;
+}
+
+.contenedor-mensajes > div {
+  position: relative;
+  bottom: 0;
+  padding: 6px 20px;
+  background: #000000bd;
+  border-radius: 5px;
+  margin-right: 8px;
+  color: white;
+  font-size: 12pt;
+}
+
+.contenedor-mensajes > div p {margin: 0;}

@@ -3,7 +3,7 @@ var DB = require("app/models/db");
 var gastos = {};
 
 gastos.obtenerGastos = (callback) => {
-	var q = "SELECT * FROM gastos";
+	var q = "SELECT *, DATE_FORMAT(date,\'%d/%m/%Y\') as dateFormat FROM gastos";
 
 	DB.getConnection(function (err, connection) {
 		connection.query(q, function (err, rows) {
@@ -45,12 +45,12 @@ gastos.modificarGasto = (data, callback) => {
 	var par = [data.name, data.date.replace('T03:00:00.000Z', ''), data.monto, data.id];
 
 	DB.getConnection(function (err, connection) {
-		connection.query(q, par, function (err, result) {
+		connection.query(q, par, function (err, row) {
 
 			if (err) throw err;
 
 			else callback(null, {
-				"insertId": result.insertId
+				"affectedRows": row.affectedRows
 			});
 
 			connection.release();
@@ -77,16 +77,16 @@ gastos.nuevoGasto = (data, callback) => {
 };
 
 gastos.eliminarGasto = (data, callback) => {
-	var q = "DELETE * FROM gastos WHERE id = ?";
+	var q = "DELETE FROM gastos WHERE id = ?";
 
-	var par = [data];
+	var par = [parseInt(data)];
 
 	DB.getConnection(function (err, connection) {
 		connection.query(q, par, function (err, row) {
 			if (err) throw err;
 
 			else callback(null, {
-				"affectedRows": row
+				"affectedRows": row.affectedRows
 			});
 
 			connection.release();
