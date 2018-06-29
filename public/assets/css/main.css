@@ -31,3 +31,10 @@
 }
 
 .contenedor-mensajes > div p {margin: 0;}
+
+[ng-messages] {
+  text-align: left;
+  font-size: 10pt;
+  color: darkred;
+  padding: 8px;
+}

@@ -69,23 +69,23 @@
         <div class="row text-center" padding>
             <div ng-show="inicio.nuevoRegistro" class="col-sm">
                 <h3 class="text-center padding">Nuevo registro</h3>
-                <form class="form" name="inicio.registroForm" novalidate ng-submit="inicio.nuevo(inicio.datosForm, inicio.registroForm.$valid)">
+                <form class="form" name="datosForm" novalidate ng-submit="inicio.nuevo(inicio.datosForm, datosForm.$valid)">
                     <div class="row">
                         <div class="col">
                             <input class="form-control" id="name" name="name" type="text" ng-model="inicio.datosForm.name" required placeholder="Nombre">
-                            <div ng-messages="inicio.datosForm.name.$error" ng-if="inicio.datosForm.$submitted || inicio.datosForm.name.$dirty">
+                            <div ng-messages="datosForm.name.$error" ng-if="datosForm.$submitted || datosForm.name.$invalid && datosForm.name.$dirty && datosForm.name.$touched">
                                 <div ng-message="required">Este campo es requerido.</div>
                             </div>
                         </div>
                         <div class="col">
                             <input class="form-control" id="date" name="date" type="date" ng-model="inicio.datosForm.date" required placeholder="fecha">
-                            <div ng-messages="inicio.datosForm.date.$error" ng-if="inicio.datosForm.$submitted || inicio.datosForm.date.$dirty">
+                            <div ng-messages="datosForm.date.$error" ng-if="datosForm.$submitted || datosForm.date.$invalid && datosForm.date.$dirty && datosForm.date.$touched">
                                 <div ng-message="required">Este campo es requerido.</div>
                             </div>
                         </div>
                         <div class="col">
-                            <input class="form-control" id="monto" name="monto" type="text" ng-model="inicio.datosForm.monto" required placeholder="monto">
-                            <div ng-messages="inicio.datosForm.monto.$error" ng-if="inicio.datosForm.$submitted || inicio.datosForm.monto.$dirty">
+                            <input class="form-control" id="monto" name="monto" type="number" ng-model="inicio.datosForm.monto" required placeholder="monto">
+                            <div ng-messages="datosForm.monto.$error" ng-if="datosForm.$submitted || datosForm.monto.$invalid && datosForm.monto.$dirty && datosForm.monto.$touched">
                                 <div ng-message="required">Este campo es requerido.</div>
                             </div>
                         </div>

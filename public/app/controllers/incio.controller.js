@@ -20,11 +20,14 @@ angular.module("sistema-de-gastos")
 			}
 		})
 
-		bz.nuevo = function (gasto) {
+		bz.nuevo = function (gasto, valid) {
+			if(!valid) return;
+			
 			gastosService.nuevoGasto(gasto).then(function (res) {
 				gasto.id = res.data.insertId;
 				gasto.monto = parseInt(gasto.monto);
 				bz.gastos.push(angular.copy(gasto));
+				bz.total += gasto.monto;
 				bz.datosForm = {};
 				bz.mensaje('Gasto registrado!', 1);
 			})
@@ -42,7 +45,6 @@ angular.module("sistema-de-gastos")
 		}
 
 		bz.eliminar = function (gasto, index, arr) {
-			
 			gastosService.eliminarGasto(gasto.id).then(function (res) {
 				bz.total -= gasto.monto;
 				arr.splice(index, 1);
