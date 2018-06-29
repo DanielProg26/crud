@@ -27,6 +27,7 @@ app.use('/angular-ui-router', express.static(__dirname + '/node_modules/angular-
 app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'))
 app.use('/angular1-ui-bootstrap4', express.static(__dirname + '/node_modules/angular1-ui-bootstrap4/dist'))
 app.use('/angular-touch', express.static(__dirname + '/node_modules/angular-touch'))
+app.use('/angular-messages', express.static(__dirname + '/node_modules/angular-messages'))
 
 
 /** VISTA ANGULAR */

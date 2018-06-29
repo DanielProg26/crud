@@ -69,10 +69,9 @@ angular.module("sistema-de-gastos")
 
 			var promise = defered.promise;
 
-			$http.put("/app/gasto", datos).then(function (res) {
+			$http.post("/conta/gasto/modificar", datos).then(function (res) {
 
 				defered.resolve(res.data);
-
 
 			}).catch(function () {
 
@@ -84,16 +83,15 @@ angular.module("sistema-de-gastos")
 
 		};
 
-		this.eliminarGasto = function () {
+		this.eliminarGasto = function (id) {
 
 			var defered = $q.defer();
 
 			var promise = defered.promise;
 
-			$http.delete("/app/gasto/"+ id).then(function (res) {
+			$http.get("/conta/gasto/eliminar/"+ id).then(function (res) {
 
 				defered.resolve(res.data);
-
 
 			}).catch(function () {
 

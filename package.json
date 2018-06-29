@@ -21,6 +21,7 @@
   "dependencies": {
     "angular": "^1.7.2",
     "angular-animate": "^1.7.2",
+    "angular-messages": "^1.7.2",
     "angular-touch": "^1.7.2",
     "angular-ui-router": "^1.0.18",
     "angular1-ui-bootstrap4": "^2.4.22",

@@ -12,9 +12,11 @@ angular.module("sistema-de-gastos", ["ui.router", "ngAnimate", 'ngTouch', 'ui.bo
 				templateUrl: "app/views/inicio.tpl",
 				controller: "inicioController as inicio",
 				resolve: {
-					gastosResolve: ["$stateParams", function ($stateParams, gastosService) {
+					gastos: ["gastosService", function (gastosService) {
 						gastosService.listarGastos().then(function(res){
-							return res;
+							return {
+								data: res.data
+							};
 						})
 					}]
 				}

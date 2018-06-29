@@ -4,7 +4,9 @@ exports.obtenerGastos =  function(req, res) {
 
 	gastos.obtenerGastos(function(error, data)
 	{
-		res.status(200).json(data);
+		res.status(200).json({
+			"data": data
+		});
 	});
 
 };
@@ -14,7 +16,9 @@ exports.obtenerGasto =  function(req, res) {
 	var id = req.params.id;
 	gastos.obtenerGasto(id,function(error, data)
 	{
-		res.status(200).json(data);
+		res.status(200).json({
+			"data": data
+		});
 	});
 
 };
@@ -22,12 +26,17 @@ exports.obtenerGasto =  function(req, res) {
 exports.nuevoGasto =  function(req, res) {
 	
 	var data = {
-		clave: req.body
+		name: req.body.name,
+		date: req.body.date,
+		monto: req.body.monto,
+		id: req.body.id
 	}
 
 	gastos.nuevoGasto(data,function(error, data)
 	{
-		res.status(200).json(data);
+		res.status(200).json({
+			"data": data
+		});
 	});
 
 };
@@ -35,12 +44,17 @@ exports.nuevoGasto =  function(req, res) {
 exports.modificarGasto =  function(req, res) {
 	
 	var data = {
-		clave: req.body
+		name: req.body.name,
+		date: req.body.date,
+		monto: req.body.monto,
+		id: req.body.id
 	}
 
-	gastos.modificarGasto(id,function(error, data)
+	gastos.modificarGasto(data, function (error, data)
 	{
-		res.status(200).json(data);
+		res.status(200).json({
+			"data": data
+		});
 	});
 
 };
@@ -51,7 +65,7 @@ exports.eliminarGasto =  function(req, res) {
 
 	gastos.eliminarGasto(id,function(error, data)
 	{
-		res.status(200).json(data);
+		res.status(200).json({"data":data});
 	});
 
 };

@@ -2,40 +2,36 @@ var DB = require("app/models/db");
 
 var gastos = {};
 
-gastos.obtenerGastos = (callback) =>
-{
-    var q   = "SELECT * FROM gastos";
-  
-	DB.getConnection(function(err, connection)
-	{
-		connection.query( q , function(err, rows){
-		
-			if(err)	throw err;
+gastos.obtenerGastos = (callback) => {
+	var q = "SELECT * FROM gastos";
 
-			else{
-				callback(null, rows); 
+	DB.getConnection(function (err, connection) {
+		connection.query(q, function (err, rows) {
+
+			if (err) throw err;
+
+			else {
+				callback(null, rows);
 			}
 
-            connection.release()
-            
+			connection.release()
+
 		});
 	});
 };
 
-gastos.obtenerGasto = (data, callback) =>
-{
-    var q   = "SELECT * FROM gastos WHERE id = ?";
-    
-    var par = data;
-  
-	DB.getConnection(function(err, connection)
-	{
-		connection.query( q , par, function(err, rows){
-		
-			if(err)	throw err;
+gastos.obtenerGasto = (data, callback) => {
+	var q = "SELECT * FROM gastos WHERE id = ?";
 
-			else{
-				callback(null, rows); 
+	var par = data;
+
+	DB.getConnection(function (err, connection) {
+		connection.query(q, [par], function (err, rows) {
+
+			if (err) throw err;
+
+			else {
+				callback(null, rows);
 			}
 
 			connection.release();
@@ -43,56 +39,56 @@ gastos.obtenerGasto = (data, callback) =>
 	});
 };
 
-gastos.modificarGasto = (data, callback) => 
-{
-	var q   = "";
-	var par = data;
-	
-	DB.getConnection(function(err, connection)
-	{
-		connection.query( q , par , function(err, result){
+gastos.modificarGasto = (data, callback) => {
 
-			if(err)	throw err;
+	var q = 'UPDATE gastos SET name = ?, date = ?, monto = ? WHERE id = ?';
+	var par = [data.name, data.date.replace('T03:00:00.000Z', ''), data.monto, data.id];
 
-			else callback(null,{"insertId" : result.insertId}); 
-				
+	DB.getConnection(function (err, connection) {
+		connection.query(q, par, function (err, result) {
+
+			if (err) throw err;
+
+			else callback(null, {
+				"insertId": result.insertId
+			});
+
 			connection.release();
 		});
 	});
 };
 
-gastos.nuevoGasto = (data, callback) => 
-{
-	var q   = "";
+gastos.nuevoGasto = (data, callback) => {
+	var q = "INSERT INTO gastos SET ?";
 	var par = data;
-	
-	DB.getConnection(function(err, connection)
-	{
-		connection.query( q , par , function(err, result){
 
-			if(err)	throw err;
+	DB.getConnection(function (err, connection) {
+		connection.query(q, par, function (err, result) {
 
-			else callback(null,{"insertId" : result.insertId}); 
-				
+			if (err) throw err;
+
+			else callback(null, {
+				"insertId": result.insertId
+			});
+
 			connection.release();
 		});
 	});
 };
 
-gastos.eliminarGasto = (data, callback) => 
-{
-    var q = "";
+gastos.eliminarGasto = (data, callback) => {
+	var q = "DELETE * FROM gastos WHERE id = ?";
 
-    var par = data;
-    
-	DB.getConnection(function(err, connection)
-	{
-		connection.query( q, par, function(err, row)
-		{
-			if(err)	throw err;
+	var par = [data];
 
-			else callback(null,{"affectedRows" : row.affectedRows }); 
-				
+	DB.getConnection(function (err, connection) {
+		connection.query(q, par, function (err, row) {
+			if (err) throw err;
+
+			else callback(null, {
+				"affectedRows": row
+			});
+
 			connection.release();
 		});
 	});
